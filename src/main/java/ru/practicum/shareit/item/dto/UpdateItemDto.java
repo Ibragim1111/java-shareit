@@ -1,5 +1,6 @@
 package ru.practicum.shareit.item.dto;
 
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,7 +11,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder(toBuilder = true)
 @AllArgsConstructor
-public class ItemDto {
+public class UpdateItemDto {
 
     private Long id;
 
@@ -20,6 +21,5 @@ public class ItemDto {
 
     private Boolean available;
 
-    private Long requestId;
-
+    private Long requestId; // будет использоваться позже для запросов
 }
