@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import ru.practicum.shareit.exceptions.exception.ConflictException;
 import ru.practicum.shareit.exceptions.exception.ErrorResponse;
+import ru.practicum.shareit.exceptions.exception.NoAccessException;
 import ru.practicum.shareit.exceptions.exception.NotFoundException;
 
 import java.util.stream.Collectors;
@@ -26,7 +27,11 @@ public class ErrorHandler {
     public ErrorResponse handleIllegalArgumentException(final IllegalArgumentException e) {
         return new ErrorResponse("Ошибка валидации", e.getMessage());
     }
-
+    @ExceptionHandler(NoAccessException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ErrorResponse handleAccessDeniedException(final NoAccessException e) {
+        return new ErrorResponse("Доступ запрещен", e.getMessage());
+    }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
