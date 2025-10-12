@@ -1,11 +1,7 @@
 package ru.practicum.shareit.user.storage;
 
-import org.springframework.stereotype.Repository;
-import ru.practicum.shareit.exceptions.exception.NotFoundException;
-import ru.practicum.shareit.user.User;
 
-import java.util.*;
-
+/*
 @Repository
 public class InMemoryUserRepository implements UserRepository {
     private final Map<Long, User> users = new HashMap<>();
@@ -45,3 +41,4 @@ public class InMemoryUserRepository implements UserRepository {
         users.remove(id);
     }
 }
+*/
