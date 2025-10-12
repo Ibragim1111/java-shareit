@@ -18,8 +18,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user) {
-        // Проверка уникальности email
-        if (isEmailExists(user.getEmail(), null)) {
+
+        if (userRepository.findByEmail(user.getEmail()).isPresent()) {
             throw new ConflictException("Email already exists: " + user.getEmail());
         }
         return userRepository.save(user);
@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
         User existingUser = getUserById(id);
 
         User user = UserMapper.updateUserFields(existingUser,updateUser);
-        // Проверка уникальности email при обновлении
+
         if (!user.getEmail().equals(existingUser.getEmail())) {
             if (isEmailExists(user.getEmail(), id)) {
                 throw new ConflictException("Email already exists: " + user.getEmail());
@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
 
 
 
-        return userRepository.update(user);
+        return userRepository.save(user);
     }
 
 
